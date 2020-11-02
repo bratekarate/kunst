@@ -236,7 +236,8 @@ main() {
 			FIRST_RUN=false
 
 			# Display the album art using sxiv
-			sxiv -g "$SIZE$POSITION" -b "$COVER" -N "Kunst" &
+      # If sxiv is closed, kill the script as well.
+      (sxiv -g "$SIZE$POSITION" -b "$COVER" -N "Kunst"; kill -- -$$) &
 
 			# Save the process ID so that we can kill
 			# sxiv when the user exits the script
